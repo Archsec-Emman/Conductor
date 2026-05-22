@@ -1,5 +1,10 @@
 # Conductor
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Archsec-Emman/Conductor/master/Conductor.png" alt="CONDUCTOR Banner" width="800">
+</p>
+
+
 [![Language](https://img.shields.io/badge/Python-3.10+-blue.svg)](https://www.python.org/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-ee4c2c.svg)](https://pytorch.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -7,8 +12,6 @@
 
 **Conductor: A Foundation Model for the Language of Financial Markets**  
 The first open‑source foundation model for financial candlesticks (K‑lines), pre‑trained on data from over 45 global exchanges.
-
-[Live Demo](https://Archsec-Emman.github.io/Conductor-demo/) • [Paper](https://arxiv.org/abs/2508.02739) • [Hugging Face](https://huggingface.co/NeoQuasar)
 
 ---
 
@@ -312,14 +315,6 @@ Conductor has been rigorously evaluated on standard financial benchmarks:
 | Synthetic K‑line Generation (Fidelity) | **+22%** |
 
 These results establish Conductor as a robust, versatile foundation model for end‑to‑end financial time‑series analysis.
-
----
-
-## 🧪 Live Demo
-
-A live demo is available that visualises Conductor's forecasting results for the **BTC/USDT** trading pair over the next 24 hours.
-
-👉 **[Access the Live Demo Here](https://Archsec-Emman.github.io/Conductor-demo/)**
 
 ---
 
