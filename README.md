@@ -341,23 +341,6 @@ The fine‑tuning pipeline is a demonstration, not a production‑ready quantita
 
 ---
 
-## 🙏 Citation
-
-If you use Conductor in your research, please cite our paper:
-
-```bibtex
-@misc{shi2025conductor,
-  title={Conductor: A Foundation Model for the Language of Financial Markets},
-  author={Yu Shi and Zongliang Fu and Shuo Chen and Bohan Zhao and Wei Xu and Changshui Zhang and Jian Li},
-  year={2025},
-  eprint={2508.02739},
-  archivePrefix={arXiv},
-  primaryClass={q-fin.ST},
-  url={https://arxiv.org/abs/2508.02739},
-}
-```
-
----
 
 ## 📄 License
 
