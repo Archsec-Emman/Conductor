@@ -1,156 +1,107 @@
-<div align="center">
-  <h2><b>Conductor: A Foundation Model for the Language of Financial Markets </b></h2>
-</div>
+# Conductor
 
+[![Language](https://img.shields.io/badge/Python-3.10+-blue.svg)](https://www.python.org/)
+[![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-ee4c2c.svg)](https://pytorch.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![arXiv](https://img.shields.io/badge/arXiv-2508.02739-b31b1b.svg)](https://arxiv.org/abs/2508.02739)
 
-<div align="center">
+**Conductor: A Foundation Model for the Language of Financial Markets**  
+The first open‑source foundation model for financial candlesticks (K‑lines), pre‑trained on data from over 45 global exchanges.
 
-</a> 
-<a href="https://huggingface.co/NeoQuasar"> 
-<img src="https://img.shields.io/badge/🤗-Hugging_Face-yellow" alt="Hugging Face"> 
-</a> 
-<a href="https://Archsec-Emman.github.io/Conductor-demo/"> <img src="https://img.shields.io/badge/🚀-Live_Demo-brightgreen" alt="Live Demo"> </a>
-<a href="https://github.com/Archsec-Emman/Conductor/graphs/commit-activity"> 
-<img src="https://img.shields.io/github/last-commit/Archsec-Emman/Conductor?color=blue" alt="Last Commit"> 
-</a> 
-<a href="https://github.com/Archsec-Emman/Conductor/stargazers"> 
-<img src="https://img.shields.io/github/stars/Archsec-Emman/Conductor?color=lightblue" alt="GitHub Stars"> 
-</a> 
-<a href="https://github.com/Archsec-Emman/Conductor/network/members"> 
-<img src="https://img.shields.io/github/forks/Archsec-Emman/Conductor?color=yellow" alt="GitHub Forks"> 
-</a> 
-<a href="./LICENSE"> 
-<img src="https://img.shields.io/github/license/Archsec-Emman/Conductor?color=green" alt="License"> 
-</a>
+[Live Demo](https://Archsec-Emman.github.io/Conductor-demo/) • [Paper](https://arxiv.org/abs/2508.02739) • [Hugging Face](https://huggingface.co/NeoQuasar)
 
-</div>
+---
 
-<div align="center">
-  <!-- Keep these links. Translations will automatically update with the README. -->
-  <a href="https://zdoc.app/de/Archsec-Emman/Conductor">Deutsch</a> | 
-  <a href="https://zdoc.app/es/Archsec-Emman/Conductor">Español</a> | 
-  <a href="https://zdoc.app/fr/Archsec-Emman/Conductor">Français</a> | 
-  <a href="https://zdoc.app/ja/Archsec-Emman/Conductor">日本語</a> | 
-  <a href="https://zdoc.app/ko/Archsec-Emman/Conductor">한국어</a> | 
-  <a href="https://zdoc.app/pt/Archsec-Emman/Conductor">Português</a> | 
-  <a href="https://zdoc.app/ru/Archsec-Emman/Conductor">Русский</a> | 
-  <a href="https://zdoc.app/zh/Archsec-Emman/Conductor">中文</a>
-</div>
+## 📖 Overview
 
-<p align="center">
+Conductor is a family of decoder‑only foundation models designed specifically for the unique, high‑noise, and non‑stationary characteristics of financial K‑line (OHLCV) data. Unlike general‑purpose time‑series foundation models (TSFMs), which often underperform on financial data, Conductor leverages a two‑stage framework:
 
-<img src="./figures/logo.png" width="100">
+1. **Specialised Tokenizer** – Quantises continuous, multi‑dimensional K‑line data (open, high, low, close, volume, amount) into hierarchical discrete tokens while preserving both price dynamics and trade activity patterns.
+2. **Autoregressive Transformer** – Pre‑trained on a massive, multi‑market corpus of **over 12 billion K‑line records from 45 global exchanges**, enabling nuanced temporal and cross‑asset representations in a zero‑shot setting.
 
-</p>
+## ✨ Key Features
 
-> Conductor is the **first open-source foundation model** for financial candlesticks (K-lines), 
-> trained on data from over **45 global exchanges**.
+### Core Capabilities
+- **Price Series Forecasting** – 93% improvement in RankIC over leading TSFMs on benchmark datasets.
+- **Volatility Prediction** – 9% lower MAE compared to non‑pre‑trained baselines.
+- **Synthetic Data Generation** – 22% improvement in generative fidelity for realistic K‑line sequences.
 
+### Technical Highlights
+- **Multi‑Asset Support** – Works with equities, crypto, FX, and commodities across 45 global exchanges.
+- **Flexible Input** – Accepts OHLCV data; volume and amount columns are optional.
+- **Batch Prediction** – Parallel inference on multiple time series simultaneously with GPU acceleration.
+- **Fine‑Tuning Pipeline** – Full support for adapting Conductor to custom datasets using Qlib (A‑share market example) or plain CSV files.
+- **Web UI** – Intuitive graphical interface with K‑line charts, parameter tuning, and multi‑device support (CPU/CUDA/MPS).
 
-</div>
+### Model Zoo
 
-## 📰 News
-*   🚩 **[2025.11.10]** Conductor has been accpeted by AAAI 2026.
-*   🚩 **[2025.08.17]** We have released the scripts for fine-tuning! Check them out to adapt Conductor to your own tasks.
-*   🚩 **[2025.08.02]** Our paper is now available on [arXiv](https://arxiv.org/abs/2508.02739)!
+| Model | Tokenizer | Context Length | Params | Open‑Source |
+|-------|-----------|----------------|--------|-------------|
+| **Conductor‑mini** | Conductor‑Tokenizer‑2k | 2048 | 4.1M | ✅ |
+| **Conductor‑small** | Conductor‑Tokenizer‑base | 512 | 24.7M | ✅ |
+| **Conductor‑base** | Conductor‑Tokenizer‑base | 512 | 102.3M | ✅ |
+| Conductor‑large | Conductor‑Tokenizer‑base | 512 | 499.2M | ❌ |
 
-<p align="center">
+All open‑source models are available on the [Hugging Face Hub](https://huggingface.co/NeoQuasar).
 
-## 📜 Introduction
+---
 
-**Conductor** is a family of decoder-only foundation models, pre-trained specifically for the "language" of financial markets—K-line sequences. Unlike general-purpose TSFMs, Conductor is designed to handle the unique, high-noise characteristics of financial data. It leverages a novel two-stage framework: 
-1. A specialized tokenizer first quantizes continuous, multi-dimensional K-line data (OHLCV) into **hierarchical discrete tokens**. 
-2. A large, autoregressive Transformer is then pre-trained on these tokens, enabling it to serve as a unified model for diverse quantitative tasks.
+## 🚀 Installation
 
-<p align="center">
-    <img src="figures/overview.png" alt="" align="center" width="700px" />
-</p>
+### Prerequisites
+- Python 3.10+
+- pip
 
-## ✨ Live Demo 
-We have set up a live demo to visualize Conductor's forecasting results. The webpage showcases a forecast for the **BTC/USDT** trading pair over the next 24 hours. 
-
-**👉 [Access the Live Demo Here](https://Archsec-Emman.github.io/Conductor-demo/)** 
-
-## 📦 Model Zoo 
-We release a family of pre-trained models with varying capacities to suit different computational and application needs. All models are readily accessible from the Hugging Face Hub.
-
-| Model        | Tokenizer                                                                       | Context length | Params  | Open-source                                                               |
-|--------------|---------------------------------------------------------------------------------| -------------- | ------ |---------------------------------------------------------------------------|
-| Conductor-mini  | [Conductor-Tokenizer-2k](https://huggingface.co/NeoQuasar/Conductor-Tokenizer-2k)     | 2048           | 4.1M   | ✅ [NeoQuasar/Conductor-mini](https://huggingface.co/NeoQuasar/Conductor-mini)  |
-| Conductor-small | [Conductor-Tokenizer-base](https://huggingface.co/NeoQuasar/Conductor-Tokenizer-base) | 512            | 24.7M  | ✅ [NeoQuasar/Conductor-small](https://huggingface.co/NeoQuasar/Conductor-small) |
-| Conductor-base  | [Conductor-Tokenizer-base](https://huggingface.co/NeoQuasar/Conductor-Tokenizer-base) | 512            | 102.3M | ✅ [NeoQuasar/Conductor-base](https://huggingface.co/NeoQuasar/Conductor-base)   |
-| Conductor-large | [Conductor-Tokenizer-base](https://huggingface.co/NeoQuasar/Conductor-Tokenizer-base) | 512            | 499.2M | ❌                                                                         |
-
-
-## 🚀 Getting Started
-
-### Installation
-
-1. Install Python 3.10+, and then install the dependencies:
-
-```shell
+### Install Dependencies
+```bash
 pip install -r requirements.txt
 ```
 
-### 📈 Making Forecasts
+Key dependencies include:
+- PyTorch (with CUDA/MPS support as needed)
+- pandas & numpy
+- transformers (Hugging Face)
+- qlib (optional, for A‑share fine‑tuning example)
+- Flask (for web UI)
 
-Forecasting with Conductor is straightforward using the `ConductorPredictor` class. It handles data preprocessing, normalization, prediction, and inverse normalization, allowing you to get from raw data to forecasts in just a few lines of code.
+---
 
-**Important Note**: The `max_context` for `Conductor-small` and `Conductor-base` is **512**. This is the maximum sequence length the model can process. For optimal performance, it is recommended that your input data length (i.e., `lookback`) does not exceed this limit. The `ConductorPredictor` will automatically handle truncation for longer contexts.
+## 📈 Making Forecasts
 
-Here is a step-by-step guide to making your first forecast.
+Conductor provides a simple `ConductorPredictor` class that handles preprocessing, normalisation, prediction, and inverse normalisation.
 
-#### 1. Load the Tokenizer and Model
-
-First, load a pre-trained Conductor model and its corresponding tokenizer from the Hugging Face Hub.
-
+### Step 1: Load Model & Tokenizer
 ```python
 from model import Conductor, ConductorTokenizer, ConductorPredictor
 
-# Load from Hugging Face Hub
 tokenizer = ConductorTokenizer.from_pretrained("NeoQuasar/Conductor-Tokenizer-base")
 model = Conductor.from_pretrained("NeoQuasar/Conductor-small")
 ```
 
-#### 2. Instantiate the Predictor
-
-Create an instance of `ConductorPredictor`, passing the model, tokenizer, and desired device.
-
+### Step 2: Initialise Predictor
 ```python
-# Initialize the predictor
 predictor = ConductorPredictor(model, tokenizer, max_context=512)
 ```
 
-#### 3. Prepare Input Data
-
-The `predict` method requires three main inputs:
--   `df`: A pandas DataFrame containing the historical K-line data. It must include columns `['open', 'high', 'low', 'close']`. `volume` and `amount` are optional.
--   `x_timestamp`: A pandas Series of timestamps corresponding to the historical data in `df`.
--   `y_timestamp`: A pandas Series of timestamps for the future periods you want to predict.
+### Step 3: Prepare Input Data
+Your DataFrame must include `['open', 'high', 'low', 'close']` columns; `volume` and `amount` are optional.
 
 ```python
 import pandas as pd
 
-# Load your data
-df = pd.read_csv("./data/XSHG_5min_600977.csv")
+df = pd.read_csv("./data/your_data.csv")
 df['timestamps'] = pd.to_datetime(df['timestamps'])
 
-# Define context window and prediction length
 lookback = 400
 pred_len = 120
 
-# Prepare inputs for the predictor
 x_df = df.loc[:lookback-1, ['open', 'high', 'low', 'close', 'volume', 'amount']]
 x_timestamp = df.loc[:lookback-1, 'timestamps']
 y_timestamp = df.loc[lookback:lookback+pred_len-1, 'timestamps']
 ```
 
-#### 4. Generate Forecasts 
-
-Call the `predict` method to generate forecasts. You can control the sampling process with parameters like `T`, `top_p`, and `sample_count` for probabilistic forecasting.
-
+### Step 4: Generate Forecasts
 ```python
-# Generate predictions
 pred_df = predictor.predict(
     df=x_df,
     x_timestamp=x_timestamp,
@@ -158,24 +109,18 @@ pred_df = predictor.predict(
     pred_len=pred_len,
     T=1.0,          # Temperature for sampling
     top_p=0.9,      # Nucleus sampling probability
-    sample_count=1  # Number of forecast paths to generate and average
+    sample_count=1  # Number of forecast paths (averaged)
 )
 
-print("Forecasted Data Head:")
-print(pred_df.head())
+print(pred_df.head())  # Contains open, high, low, close, volume, amount
 ```
 
-The `predict` method returns a pandas DataFrame containing the forecasted values for `open`, `high`, `low`, `close`, `volume`, and `amount`, indexed by the `y_timestamp` you provided.
-
-For efficient processing of multiple time series, Conductor provides a `predict_batch` method that enables parallel prediction on multiple datasets simultaneously. This is particularly useful when you need to forecast multiple assets or time periods at once.
-
+### Batch Prediction (Multiple Time Series)
 ```python
-# Prepare multiple datasets for batch prediction
-df_list = [df1, df2, df3]  # List of DataFrames
-x_timestamp_list = [x_ts1, x_ts2, x_ts3]  # List of historical timestamps
-y_timestamp_list = [y_ts1, y_ts2, y_ts3]  # List of future timestamps
+df_list = [df1, df2, df3]
+x_timestamp_list = [x_ts1, x_ts2, x_ts3]
+y_timestamp_list = [y_ts1, y_ts2, y_ts3]
 
-# Generate batch predictions
 pred_df_list = predictor.predict_batch(
     df_list=df_list,
     x_timestamp_list=x_timestamp_list,
@@ -186,152 +131,259 @@ pred_df_list = predictor.predict_batch(
     sample_count=1,
     verbose=True
 )
-
-# pred_df_list contains prediction results in the same order as input
-for i, pred_df in enumerate(pred_df_list):
-    print(f"Predictions for series {i}:")
-    print(pred_df.head())
 ```
 
-**Important Requirements for Batch Prediction:**
-- All series must have the same historical length (lookback window)
-- All series must have the same prediction length (`pred_len`)
-- Each DataFrame must contain the required columns: `['open', 'high', 'low', 'close']`
-- `volume` and `amount` columns are optional and will be filled with zeros if missing
+**Requirements for batch prediction:**
+- All series must have the same lookback window length and prediction length (`pred_len`).
+- Each DataFrame must include the required OHLC columns.
 
-The `predict_batch` method leverages GPU parallelism for efficient processing and automatically handles normalization and denormalization for each series independently.
+---
 
-#### 5. Example and Visualization
+## 🖥️ Web UI
 
-For a complete, runnable script that includes data loading, prediction, and plotting, please see [`examples/prediction_example.py`](examples/prediction_example.py).
+Conductor includes a complete web‑based interface for interactive forecasting.
 
-Running this script will generate a plot comparing the ground truth data against the model's forecast, similar to the one shown below:
+### Quick Start
+```bash
+cd webui
+python run.py
+# or
+./start.sh
+# or directly
+python app.py
+```
 
-<p align="center">
-    <img src="figures/prediction_example.png" alt="Forecast Example" align="center" width="600px" />
-</p>
+Then open `http://localhost:7070` in your browser.
 
-Additionally, we provide a script that makes predictions without Volume and Amount data, which can be found in [`examples/prediction_wo_vol_example.py`](examples/prediction_wo_vol_example.py).
+### Features
+- **Multi‑format Data Support** – CSV, Feather, and other financial formats.
+- **Smart Time Window** – Fixed 400+120 data point slider selection.
+- **Real Model Prediction** – Integrated Conductor models (mini, small, base).
+- **Prediction Quality Control** – Adjustable temperature (0.1–2.0), nucleus sampling (top_p 0.1–1.0), and sample count (1–5).
+- **Multi‑Device Support** – CPU, CUDA (NVIDIA), MPS (Apple Silicon).
+- **Comparison Analysis** – Detailed error analysis and prediction quality assessment.
+- **K‑Line Chart Display** – Professional financial candle charts powered by Plotly.js.
 
+### Recommended Parameters
+| Parameter | Range | Recommendation |
+|-----------|-------|----------------|
+| Temperature (T) | 0.1–2.0 | 1.2–1.5 for better quality |
+| Nucleus Sampling (top_p) | 0.1–1.0 | 0.95–1.0 to consider more possibilities |
+| Sample Count | 1–5 | 2–3 samples to improve quality |
 
-## 🔧 Finetuning on Your Own Data (A-Share Market Example)
+---
 
-We provide a complete pipeline for finetuning Conductor on your own datasets. As an example, we demonstrate how to use [Qlib](https://github.com/microsoft/qlib) to prepare data from the Chinese A-share market and conduct a simple backtest.
+## 🔧 Fine‑Tuning on Custom Data
 
-> **Disclaimer:** This pipeline is intended as a demonstration to illustrate the finetuning process. It is a simplified example and not a production-ready quantitative trading system. A robust quantitative strategy requires more sophisticated techniques, such as portfolio optimization and risk factor neutralization, to achieve stable alpha.
+Conductor provides complete pipelines for adapting pre‑trained models to your own datasets. Two approaches are available:
 
-The finetuning process is divided into four main steps:
+### Option A: Fine‑Tune with Qlib (A‑Share Market Example)
 
-1.  **Configuration**: Set up paths and hyperparameters.
-2.  **Data Preparation**: Process and split your data using Qlib.
-3.  **Model Finetuning**: Finetune the Tokenizer and the Predictor models.
-4.  **Backtesting**: Evaluate the finetuned model's performance.
+This pipeline demonstrates fine‑tuning on Chinese A‑share market data using Microsoft's Qlib library.
 
-### Prerequisites
+**Prerequisites:**
+- Install `pyqlib` and prepare Qlib data following the [official guide](https://github.com/microsoft/qlib).
+- Daily frequency data is assumed.
 
-1.  First, ensure you have all dependencies from `requirements.txt` installed.
-2.  This pipeline relies on `qlib`. Please install it:
-    ```shell
-      pip install pyqlib
-    ```
-3.  You will need to prepare your Qlib data. Follow the [official Qlib guide](https://github.com/microsoft/qlib) to download and set up your data locally. The example scripts assume you are using daily frequency data.
+**Step 1 – Configure Experiment:**  
+Edit `finetune/config.py` to set:
+- `qlib_data_path`: Path to your local Qlib data.
+- `dataset_path`: Where processed pickle files will be saved.
+- `save_path`: Base directory for model checkpoints.
+- `backtest_result_path`: Directory for backtesting results.
+- `pretrained_tokenizer_path` and `pretrained_predictor_path`: Starting models (local or Hugging Face names).
 
-### Step 1: Configure Your Experiment
-
-All settings for data, training, and model paths are centralized in `finetune/config.py`. Before running any scripts, please **modify the following paths** according to your environment:
-
-*   `qlib_data_path`: Path to your local Qlib data directory.
-*   `dataset_path`: Directory where the processed train/validation/test pickle files will be saved.
-*   `save_path`: Base directory for saving model checkpoints.
-*   `backtest_result_path`: Directory for saving backtesting results.
-*   `pretrained_tokenizer_path` and `pretrained_predictor_path`: Paths to the pre-trained models you want to start from (can be local paths or Hugging Face model names).
-
-You can also adjust other parameters like `instrument`, `train_time_range`, `epochs`, and `batch_size` to fit your specific task. If you don't use [Comet.ml](https://www.comet.com/), set `use_comet = False`.
-
-### Step 2: Prepare the Dataset
-
-Run the data preprocessing script. This script will load raw market data from your Qlib directory, process it, split it into training, validation, and test sets, and save them as pickle files.
-
-```shell
+**Step 2 – Prepare Dataset:**  
+```bash
 python finetune/qlib_data_preprocess.py
 ```
+This loads raw market data, splits into training/validation/test sets, and saves them as `train_data.pkl`, `val_data.pkl`, and `test_data.pkl`.
 
-After running, you will find `train_data.pkl`, `val_data.pkl`, and `test_data.pkl` in the directory specified by `dataset_path` in your config.
-
-### Step 3: Run the Finetuning
-
-The finetuning process consists of two stages: finetuning the tokenizer and then the predictor. Both training scripts are designed for multi-GPU training using `torchrun`.
-
-#### 3.1 Finetune the Tokenizer
-
-This step adjusts the tokenizer to the data distribution of your specific domain.
-
-```shell
-# Replace NUM_GPUS with the number of GPUs you want to use (e.g., 2)
+**Step 3 – Fine‑Tune (Multi‑GPU Supported):**  
+```bash
+# Fine‑tune tokenizer
 torchrun --standalone --nproc_per_node=NUM_GPUS finetune/train_tokenizer.py
-```
 
-The best tokenizer checkpoint will be saved to the path configured in `config.py` (derived from `save_path` and `tokenizer_save_folder_name`).
-
-#### 3.2 Finetune the Predictor
-
-This step finetunes the main Conductor model for the forecasting task.
-
-```shell
-# Replace NUM_GPUS with the number of GPUs you want to use (e.g., 2)
+# Fine‑tune predictor
 torchrun --standalone --nproc_per_node=NUM_GPUS finetune/train_predictor.py
 ```
 
-The best predictor checkpoint will be saved to the path configured in `config.py`.
-
-### Step 4: Evaluate with Backtesting
-
-Finally, run the backtesting script to evaluate your finetuned model. This script loads the models, performs inference on the test set, generates prediction signals (e.g., forecasted price change), and runs a simple top-K strategy backtest.
-
-```shell
-# Specify the GPU for inference
+**Step 4 – Backtesting Evaluation:**  
+```bash
 python finetune/qlib_test.py --device cuda:0
 ```
+Outputs performance metrics and generates a cumulative return plot comparing your strategy against the benchmark.
 
-The script will output a detailed performance analysis in your console and generate a plot showing the cumulative return curves of your strategy against the benchmark, similar to the one below:
+### Option B: Fine‑Tune on Custom CSV Data
 
-<p align="center">
-    <img src="figures/backtest_result_example.png" alt="Backtest Example" align="center" width="700px" />
-</p>
+The `finetune_csv/` module provides a flexible pipeline for any CSV‑formatted financial data.
 
-### 💡 From Demo to Production: Important Considerations
+**Required CSV Columns:**
+| Column | Description |
+|--------|-------------|
+| `timestamps` | DateTime stamps for each data point |
+| `open` | Opening price |
+| `high` | Highest price |
+| `low` | Lowest price |
+| `close` | Closing price |
+| `volume` | Trading volume |
+| `amount` | Trading amount (can be 0 if not available) |
 
-*   **Raw Signals vs. Pure Alpha**: The signals generated by the model in this demo are raw predictions. In a real-world quantitative workflow, these signals would typically be fed into a portfolio optimization model. This model would apply constraints to neutralize exposure to common risk factors (e.g., market beta, style factors like size and value), thereby isolating the **"pure alpha"** and improving the strategy's robustness.
-*   **Data Handling**: The provided `QlibDataset` is an example. For different data sources or formats, you will need to adapt the data loading and preprocessing logic.
-*   **Strategy and Backtesting Complexity**: The simple top-K strategy used here is a basic starting point. Production-level strategies often incorporate more complex logic for portfolio construction, dynamic position sizing, and risk management (e.g., stop-loss/take-profit rules). Furthermore, a high-fidelity backtest should meticulously model transaction costs, slippage, and market impact to provide a more accurate estimate of real-world performance.
+**Configuration:**  
+Edit `finetune_csv/configs/config_ali09988_candle-5min.yaml` (or create your own) to set data paths, lookback window, prediction window, and training parameters.
 
-> **📝 AI-Generated Comments**: Please note that many of the code comments within the `finetune/` directory were generated by an AI assistant (Gemini 2.5 Pro) for explanatory purposes. While they aim to be helpful, they may contain inaccuracies. We recommend treating the code itself as the definitive source of logic.
+**Sequential Training (Recommended):**  
+```bash
+# Complete training (tokenizer + predictor)
+python train_sequential.py --config configs/config_ali09988_candle-5min.yaml
 
-## 📖 Citation
+# Skip existing models
+python train_sequential.py --config configs/config_ali09988_candle-5min.yaml --skip-existing
 
-If you use Conductor in your research, we would appreciate a citation to our [paper](https://arxiv.org/abs/2508.02739):
+# Train tokenizer only
+python train_sequential.py --config configs/config_ali09988_candle-5min.yaml --skip-basemodel
+
+# Train predictor only
+python train_sequential.py --config configs/config_ali09988_candle-5min.yaml --skip-tokenizer
+```
+
+**Distributed Training (DDP):**  
+```bash
+DIST_BACKEND=nccl torchrun --standalone --nproc_per_node=8 train_sequential.py --config configs/config_ali09988_candle-5min.yaml
+```
+
+**Training Outputs:**
+- **Tokenizer Checkpoints:** `{base_save_path}/{exp_name}/tokenizer/best_model/`
+- **Predictor Checkpoints:** `{base_save_path}/{exp_name}/basemodel/best_model/`
+- **Logs:** Console output + detailed log files
+
+---
+
+## 📁 Project Structure
 
 ```
+Conductor/
+├── model/                  # Core Conductor model implementation
+│   ├── conductor.py        # Main model classes
+│   ├── module.py           # Transformer modules
+│   └── __init__.py
+├── finetune/               # Fine‑tuning pipeline (Qlib A‑share example)
+│   ├── config.py           # Configuration
+│   ├── dataset.py          # Data loading utilities
+│   ├── qlib_data_preprocess.py
+│   ├── qlib_test.py        # Backtesting evaluation
+│   ├── train_tokenizer.py
+│   ├── train_predictor.py
+│   └── utils/
+├── finetune_csv/           # Fine‑tuning on custom CSV data
+│   ├── train_sequential.py # Complete training pipeline
+│   ├── finetune_tokenizer.py
+│   ├── finetune_base_model.py
+│   └── configs/            # YAML configuration files
+├── webui/                  # Flask web interface
+│   ├── app.py              # Main application
+│   ├── run.py              # Launcher script
+│   ├── start.sh
+│   └── requirements.txt
+├── examples/               # Example scripts
+│   ├── prediction_example.py
+│   ├── prediction_batch_example.py
+│   ├── prediction_cn_markets_day.py
+│   ├── get_akshare_date_2024-2025_x.py
+│   └── ...
+├── tests/                  # Unit tests
+├── figures/                # Documentation images
+├── requirements.txt        # Python dependencies
+├── LICENSE                 # MIT License
+└── README.md               # This file
+```
+
+---
+
+## 📊 Performance Benchmarks
+
+Conductor has been rigorously evaluated on standard financial benchmarks:
+
+| Task | Improvement vs. Leading TSFM |
+|------|------------------------------|
+| Price Series Forecasting (RankIC) | **+93%** |
+| Price Series Forecasting (vs. best non‑pre‑trained baseline) | **+87%** |
+| Volatility Forecasting (MAE) | **-9%** |
+| Synthetic K‑line Generation (Fidelity) | **+22%** |
+
+These results establish Conductor as a robust, versatile foundation model for end‑to‑end financial time‑series analysis.
+
+---
+
+## 🧪 Live Demo
+
+A live demo is available that visualises Conductor's forecasting results for the **BTC/USDT** trading pair over the next 24 hours.
+
+👉 **[Access the Live Demo Here](https://Archsec-Emman.github.io/Conductor-demo/)**
+
+---
+
+## 📝 Important Notes
+
+### Context Length Limitations
+- `Conductor-small` and `Conductor-base` have a maximum context length of **512**.
+- For optimal performance, ensure your input `lookback` length does not exceed this limit.
+- The `ConductorPredictor` will automatically truncate longer contexts.
+
+### AI‑Generated Comments
+Many code comments in the `finetune/` directory were generated by an AI assistant (Gemini 2.5 Pro) for explanatory purposes. While they aim to be helpful, they may contain inaccuracies. Treat the code itself as the definitive source of logic.
+
+### From Demo to Production
+The fine‑tuning pipeline is a demonstration, not a production‑ready quantitative trading system. Robust strategies require:
+- Portfolio optimisation to neutralise exposure to common risk factors (market beta, size, value).
+- Meticulous modelling of transaction costs, slippage, and market impact.
+- More complex logic for portfolio construction, dynamic position sizing, and risk management (stop‑loss/take‑profit rules).
+
+---
+
+## 🙏 Citation
+
+If you use Conductor in your research, please cite our paper:
+
+```bibtex
 @misc{shi2025conductor,
-      title={Conductor: A Foundation Model for the Language of Financial Markets}, 
-      author={Yu Shi and Zongliang Fu and Shuo Chen and Bohan Zhao and Wei Xu and Changshui Zhang and Jian Li},
-      year={2025},
-      eprint={2508.02739},
-      archivePrefix={arXiv},
-      primaryClass={q-fin.ST},
-      url={https://arxiv.org/abs/2508.02739}, 
+  title={Conductor: A Foundation Model for the Language of Financial Markets},
+  author={Yu Shi and Zongliang Fu and Shuo Chen and Bohan Zhao and Wei Xu and Changshui Zhang and Jian Li},
+  year={2025},
+  eprint={2508.02739},
+  archivePrefix={arXiv},
+  primaryClass={q-fin.ST},
+  url={https://arxiv.org/abs/2508.02739},
 }
 ```
 
-## 📜 License 
-This project is licensed under the [MIT License](./LICENSE).
+---
 
+## 📄 License
 
+This project is licensed under the [MIT License](LICENSE).
 
+---
 
+## 🤝 Contributing
 
+Contributions are welcome! Please feel free to submit issues, feature requests, or pull requests.
 
+### Areas for Contribution
+- Additional data connectors (more exchange APIs, alternative data sources)
+- New evaluation metrics and benchmarks
+- Optimised inference backends (ONNX, TensorRT)
+- Production‑ready deployment examples (Docker, Kubernetes)
+- More fine‑tuning examples (crypto, FX, commodities)
 
+---
 
+## 📬 Contact & Support
 
+- **GitHub Issues**: [https://github.com/Archsec-Emman/Conductor/issues](https://github.com/Archsec-Emman/Conductor/issues)
+- **Author**: [Archsec-Emman](https://github.com/Archsec-Emman)
 
+---
+
+*If you find Conductor useful in your research or trading workflows, please consider giving the repository a star.* ⭐
+```
